@@ -1,14 +1,14 @@
 <template lang="pug">
 div#left-side-menu.position-fixed.top-0.h-100(:class="{ 'open-mobile-menu': openMenu }")
-  div.h-100.bg-primary.bg-cover(:style="{ backgroundImage: backgroundImage}")
+  div.h-100.bg-cover(:style="{ backgroundImage: backgroundImage}" :class="menuClass")
     div.h-100.position-absolute(style="width:10px;right:-5px" :style="{ 'cursor': miniMenu?'e-resize':'w-resize' }" @click="miniMenuFunction" )
     div.pt-4.overflow-hidden(style="background-size:120%;")
       div.pl-4.pb-4
         slot(name="logo")
-          h1.text-white Logo Here
+          p Logo Here
       div(:class="miniMenu ? 'pl-3': 'pl-4'")
         slot(name="user-avatar")
-          p.text-white User Avatar Here
+          p User Avatar Here
       div.wrap.menu-wrap.position-.mb-4()
         slot(name="menu")
           div.bg-secondary.position-absolute.menu-cursor(style="width: 5px;transition: 0.6s cubic-bezier(0.65, 1.5, 0.6, 0.95);right:0px" :style="{ top: `${cursorPosition  }px`, height: `${activeMenuHeight}px`,}")
@@ -35,41 +35,45 @@ export default {
       cursorIndex: 0,
       cursorPosition: 0,
       show: false,
-      collapseState: "w-resize",
+      collapseState: "w-resize"
     };
   },
   props: {
+    menuClass: {
+      type: String,
+      default: ""
+    },
     openMenu: {
       type: Boolean,
-      default: null,
+      default: null
     },
     miniMenu: {
       type: Boolean,
-      default: null,
+      default: null
     },
     miniMenuFunction: {
       type: Function,
-      default: null,
+      default: null
     },
     closeFunction: {
       type: Function,
-      default: null,
+      default: null
     },
     backgroundImage: {
       type: String,
-      default: null,
+      default: null
     },
     accountMenus: {
       type: Array,
       required: true,
       default: () => {
         return {};
-      },
-    },
+      }
+    }
   },
   mounted() {
     this.mounted = true;
-    const mainLink = this.$route.fullPath.split("/");
+    // const mainLink = this.$route.fullPath.split("/");
     this.accountMenus.forEach((menu, index) => {
       if (menu.name == this.$route.name) {
         const actiiveMenuElement = document
@@ -88,7 +92,7 @@ export default {
         if (menus.length !== 0) return menus[this.cursorIndex].clientHeight;
       }
       return 42;
-    },
+    }
   },
   watch: {
     $route(to) {
@@ -102,8 +106,8 @@ export default {
           this.cursorIndex = index;
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
