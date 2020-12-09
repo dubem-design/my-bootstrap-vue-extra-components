@@ -1,0 +1,9 @@
+node_modules
+.env
+
+
+# ignore src
+src/**/*
+
+# override above and include vue files
+!src/components/**/*.vue

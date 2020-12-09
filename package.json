@@ -1,7 +1,6 @@
 {
-  "name": "my-bootstrap-vue-extra-components",
+  "name": "@dubem-design/my-bootstrap-vue-extra-components",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -44,5 +43,8 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
