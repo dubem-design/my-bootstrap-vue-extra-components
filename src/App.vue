@@ -1,6 +1,16 @@
 <template lang="pug">
-div#app
-  router-view
+component(:is="layout" )
+    router-view
 </template>
+
+<script>
+export default {
+  computed: {
+    layout() {
+      return this.$route.meta.layout;
+    },
+  },
+};
+</script>
 
 <style lang="scss"></style>
